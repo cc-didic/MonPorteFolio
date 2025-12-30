@@ -1,4 +1,4 @@
-<?php require_once 'db/db_connect.php'; ?>
+<?php require_once 'db/function.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -26,32 +26,27 @@
             <h2>Mes projets</h2>
             <div class="list-projects">
                 <?php
-                    $pdo = getDBConnection();
 
-                    $sql = "SELECT * FROM my_portfolio_php.projects;";
+                    $projects = getAllProjects();
 
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute();
-
-                    $result = $stmt->fetchAll();
-                    foreach($result as $row) :?>
+                    foreach($projects as $row) :?>
 
                         <article class="project">
                             <!-- Images -->
                             <!-- Titre -->
                             <h3>
-                                <?php echo htmlspecialchars($row['title'], ENT_QUOTES, 'UTF-8') . "\t"; ?>
+                                <?php echoValue($row, 'title'); ?>
                             </h3>
                             <!-- Description -->
                             <p class="description">
-                                <?php echo htmlspecialchars($row['description'], ENT_QUOTES, 'UTF-8') . "\t"; ?>
+                                <?php echoValue($row, 'description'); ?>
                             </p>
 
                             <div class="links">
                                 <!-- Lien Github -->
-                                <a href="<?php echo htmlspecialchars($row['github_link'], ENT_QUOTES, 'UTF-8') . "\n"; ?>"class="btn-link github" target="_blank"><i class="fab fa-github"></i>Github</a>
+                                <a href="<?php echoValue($row, 'github_link'); ?>"class="btn-link github" target="_blank"><i class="fab fa-github"></i>Github</a>
                                 <!-- Lien Projet -->
-                                <a href="<?php echo htmlspecialchars($row['project_link'], ENT_QUOTES, 'UTF-8') . "\n"; ?>"class="btn-link project-url" target="_blank"><i class="fas fa-external-link-alt"></i>Voir</a>
+                                <a href="<?php echoValue($row, 'project_link'); ?>"class="btn-link project-url" target="_blank"><i class="fas fa-external-link-alt"></i>Voir</a>
                             </div>
                             
                             <!-- Technos -->
@@ -67,29 +62,23 @@
             <h2>Mes skills</h2>
             <div class="list-skills">
                 <?php
-                    $pdo = getDBConnection();
 
-                    $sql = "SELECT * FROM my_portfolio_php.skills;";
+                    $skills = getAllSkills();
 
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute();
-
-                    $result = $stmt->fetchAll();
-
-                    foreach($result as $row) :?>
+                    foreach($skills as $skill) :?>
 
                         <article class="skill">
 
-                            <?php if($row['logo'] == null): ?>
+                            <?php if($skill['logo'] == null): ?>
                                 <!-- Nom -->
                                 <h3>
-                                    <?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . "\t"; ?>
+                                    <?php echoValue($skill, 'name'); ?>
                                 </h3>
                             
                             <?php else: ?>
                                 <!-- Logo -->
                                 <p class="img">
-                                    <img src="<?php echo htmlspecialchars($row['logo'], ENT_QUOTES, 'UTF-8') . "\t"; ?>" alt= "<?php echo htmlspecialchars($row['name'], ENT_QUOTES, 'UTF-8') . "\t"; ?>"/>
+                                    <img src="<?php echoValue($skill, 'logo'); ?>" alt= "<?php echoValue($skill, 'name'); ?>"/>
                                 </p>
 
                             <?php endif; ?>
