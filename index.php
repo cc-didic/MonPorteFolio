@@ -33,14 +33,23 @@
 
                         <article class="project">
                             <!-- Images -->
+
                             <!-- Titre -->
                             <h3>
                                 <?php echoValue($row, 'title'); ?>
                             </h3>
+
                             <!-- Description -->
                             <p class="description">
                                 <?php echoValue($row, 'description'); ?>
                             </p>
+
+                            <!-- Skills -->
+                            <div class="project-skills">
+                                <?php foreach($row['skills'] as $skill): ?>
+                                    <div><?php echo $skill; ?></div>
+                                <?php endforeach ?>
+                            </div>
 
                             <div class="links">
                                 <!-- Lien Github -->
