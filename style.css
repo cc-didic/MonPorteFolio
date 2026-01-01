@@ -590,10 +590,21 @@ input[type="file"] {
     margin-bottom: 1rem;
 }
 
+.alert{
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-radius: var(--radius-lg);
+}
 
+.alert.error{
+    background-color: #f31c1c;
+}
 
-
-
+.alert.success{
+    background-color: #78ff93;
+}
 
 
 
