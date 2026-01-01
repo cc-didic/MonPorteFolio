@@ -2,12 +2,13 @@
     require_once 'utils/session.php';
     require_once 'db/function.php';
 
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if(isLoggedIn() && $_SERVER['REQUEST_METHOD'] === 'POST'){
         // Cas où le formulaire (suppression) a été rempli et soumis
         $idProjectToDelete = $_POST["idProjectToDelete"];
 
         $success = deleteProject($idProjectToDelete);
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +26,7 @@
     <main>
         <section class="hero-section">
             <div class="hero-content">
-                <h1>Caron Cédric - Développeur Web</h1>
+                <h1>Développeur Web</h1>
                 <div>Envoyez-moi votre idée de projet, et je vous la réalise en deux semaines.</div>
             </div>
             
@@ -60,10 +61,12 @@
                             <!-- Images -->
 
                             <!-- Bouton supprimer -->
-                            <form action="" method="POST">
-                                <input type="hidden" name="idProjectToDelete" value="<?php echoValue($row, 'idprojects'); ?>"/>
-                                <input type="submit" value="Delete">
-                            </form>
+                            <?php if(isLoggedIn()):?>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="idProjectToDelete" value="<?php echoValue($row, 'idprojects'); ?>"/>
+                                    <input type="submit" value="Delete">
+                                </form>
+                            <?php endif; ?>
 
                             <!-- Titre -->
                             <h3>

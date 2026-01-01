@@ -6,3 +6,10 @@
     function isLoggedIn(){
         return isset($_SESSION['idUser']);
     }
+
+    function requireLogin(){
+        if(!isLoggedIn()){
+            header('Location: login.php');
+            exit;
+        }
+    }

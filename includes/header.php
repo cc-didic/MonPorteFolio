@@ -9,8 +9,7 @@
             <?php
                 if(isLoggedIn()):?>
                     <li><a href="/createproject.php">Créer un projet</a></li>
-                <?php endif
-            ?>
+            <?php endif?>
 
             <li><a href="#">A propos</a></li>
             <li><a href="#">Services</a></li>
