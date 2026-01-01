@@ -1,4 +1,13 @@
-<?php require_once 'db/function.php'; ?>
+<?php 
+    require_once 'db/function.php';
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        // Cas où le formulaire (suppression) a été rempli et soumis
+        $idProjectToDelete = $_POST["idProjectToDelete"];
+
+        $success = deleteProject($idProjectToDelete);
+    }
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,6 +32,21 @@
         </section>
 
         <section class="projects">
+
+            <?php
+                if(isset($success)):
+                    if($success):?>
+                        <div class="alert success">
+                            Le projet a bien été supprimé
+                        </div>
+                    <?php else: ?>
+                        <div class="alert error">
+                            Une erreur est survenue
+                        </div>
+                    <?php endif;
+                endif;
+            ?>
+
             <h2>Mes projets</h2>
             <div class="list-projects">
                 <?php
@@ -33,6 +57,12 @@
 
                         <article class="project">
                             <!-- Images -->
+
+                            <!-- Bouton supprimer -->
+                            <form action="" method="POST">
+                                <input type="hidden" name="idProjectToDelete" value="<?php echoValue($row, 'idprojects'); ?>"/>
+                                <input type="submit" value="Delete">
+                            </form>
 
                             <!-- Titre -->
                             <h3>

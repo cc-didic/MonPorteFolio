@@ -1,8 +1,6 @@
 <?php
     require_once 'db/function.php';
 
-    $message = null;
-
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // Cas où le formulaire a été rempli et soumis
         $titre = $_POST["title"];
