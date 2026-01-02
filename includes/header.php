@@ -1,6 +1,6 @@
 <header class="site-header">
     <div class="logo">
-        <a href="#">Cédric Caron</a>
+        <a href="/index.php#">Cédric Caron</a>
     </div>
     <nav class="main-nav">
         <ul>
