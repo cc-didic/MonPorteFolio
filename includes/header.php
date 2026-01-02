@@ -4,16 +4,15 @@
     </div>
     <nav class="main-nav">
         <ul>
-            <li><a href="/index.php">Acceuil</a></li>
+            <li><a href="/index.php#">Acceuil</a></li>
 
             <?php
                 if(isLoggedIn()):?>
                     <li><a href="/createproject.php">Créer un projet</a></li>
             <?php endif?>
 
-            <li><a href="#">A propos</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/index.php#projects">Mes projets</a></li>
+            <li><a href="/index.php#skills">Skills</a></li>
         </ul>
     </nav>
 

@@ -33,7 +33,7 @@
             <img src="img/tom-cruise.jpeg" alt="Tom Cruise">
         </section>
 
-        <section class="projects">
+        <section class="projects" id="projects">
 
             <?php
                 if(isset($success)):
@@ -100,7 +100,7 @@
             </div>
         </section>
 
-        <section class="skills">
+        <section class="skills" id="skills">
 
             <h2>Mes skills</h2>
             <div class="list-skills">

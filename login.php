@@ -4,18 +4,19 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // Cas où le formulaire a été rempli et soumis
-        $username = $_POST["username"];
+        $email = $_POST["email"];
         $password = $_POST["password"];
 
-        //Simuler une connexion sans passer par la BDD
-        if($username == "CC" && $password == "123"){
-            $_SESSION['idUser'] = "CC";
+        //Récupérer l'utilisateur avec cet email
+        $user = getUserByEmail($email);
+        
+        if($user && password_verify($password, $user['password'])){
+            $_SESSION['idUser'] = $user['idUsers'];
             header('Location: index.php');
         }
         else{
             echo "Nom d'utilisateur ou mot de passe incorrect";
         }
-        //$success = insertProject($titre, $description, $github_link, $project_link);
     }
 ?>
 
@@ -40,8 +41,8 @@
             
             <div class="form-grid">
                 <div class="form-group full">
-                    <label for="username">Nom de l'utilisateur</label>
-                    <input id="username" name="username" type="text">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email">
                 </div>
 
                 <div class="form-group full">
